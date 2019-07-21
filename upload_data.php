@@ -1,4 +1,5 @@
 <?php
+
 /*
 require "./Mdeoo.php";
 use Medoo\Medoo;
@@ -64,18 +65,24 @@ function sticky_section(){
     $data["sticky"]=$_POST["sticky"];
     $data["date"]=date("Y-m-d H:i:s");
 
-    
+
     if(file_exists("sticky.json")){
-        $data_org_json = file_get_contents("sticky.json");
-        $data_org = json_decode($data_org_json);
-        $data_org[]=$data;
-        //print_r($data_org);
-        $data_org_json = json_encode($data_org);
-        file_put_contents("sticky.json",$data_org_json);
+        $sticky_data = json_decode(file_get_contents("sticky.json"));
+        $sticky_data[]=$data;
+        $sticky_data = array_values($sticky_data);
+        file_put_contents("sticky.json",json_encode($sticky_data));
     }else{
-        $data_array[0]=$data;
-        $data_json = json_encode($data_array);
-        file_put_contents("sticky.json",$data_json);
+        $sticky_data[]=$data;
+        $sticky_data = array_values($sticky_data);
+        file_put_contents("sticky.json",json_encode($sticky_data));
     }
+
+    //TODO without debug  the page will return inidex.php
+    global $debug;
+    //print($debug);
+    if($debug==0){
+        print("<script>window.location.href=\"index.php\"</script>");
+    }
+    
 }
 

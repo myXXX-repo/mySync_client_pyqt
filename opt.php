@@ -6,7 +6,8 @@ if(file_exists("debug.ini")){
 }
 
 
-$opt = $_GET["opt"];
+//1.del
+$opt = $_GET["option"];
 switch($opt){
     case "del":{
         del_opt();
@@ -15,16 +16,25 @@ switch($opt){
 }
 
 function del_opt(){
-    $id = $_GET["id"];
-    $sticky_data = json_decode(file_get_contents("sticky.json"));
-    for($i=0;$i<sizeof($sticky_data);$i++){
-        if($i>=$id){
-            
+    if(file_exists(("sticky.json"))){
+        $id = $_GET["id"];
+        $sticky_data = json_decode(file_get_contents("sticky.json"));
+        $new_sticky_data=array();
+        //$id = $_GET["id"];
+        for($i=0;$i<count($sticky_data);$i++){
+            if($i==$id){
+                //$i++;
+            }
+            else{$new_sticky_data[]=$sticky_data[$i];}
         }
+        file_put_contents("sticky.json",json_encode($new_sticky_data));
+        global $debug;
+        if($debug==0){
+            print("<script>window.location.href=\"index.php\"</script>");
+        }
+    }else{
+        die("have no file of sticky.json");
     }
-
-    
-    file_put_contents("sticky.json",json_encode($sticky_data));
 }
 
 if($debug){

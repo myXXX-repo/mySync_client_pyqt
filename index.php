@@ -9,6 +9,9 @@
             height: 600px;
             overflow: hidden;
         }
+        body{
+            //background-color: gray;
+        }
         </style>
     </head>
     <body>
@@ -23,11 +26,11 @@
                 <table>
                     <tr>
                         <td>devname</td>
-                        <td><input type="text" name="devname" value="admin" autocomplete="off"></td>
+                        <td><input type="text" name="devname" autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td>sticky</td>
-                        <td><input type="text" name="sticky" value="thisisasticky" autocomplete="off"></td>
+                        <td><input type="text" name="sticky" autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -43,6 +46,7 @@
             <script>
                 var sticky_data = <?php echo file_get_contents("sticky.json");?>;
                 var stickt_list = document.getElementsByClassName("sticky_list")[0];
+                //var tag = 0;
                 for(var i in sticky_data){
                     var a_del=document.createElement("a");
                     a_del.setAttribute("href","opt.php?option=del&id="+i);
@@ -52,13 +56,18 @@
                     li.appendChild(a_del);
                     li.appendChild(document.createTextNode(sticky_data[i]["devname"]+"| "+sticky_data[i]["sticky"]));
                     stickt_list.appendChild(li);
+                    //tag = i;
                 }
-                
+                /*
+                var tag_p = document.createElement("p");
+                tag_p.appendChild(Document.createTextNode(tag));
+                var show_sticky = document.getElementsByClassName()[0];
+                show_sticky.appendChild(tag_p);*/
             </script>
         </div>
         <div class="footer">
             <hr>
-            designed by Wolf Hugo
+            designed by Wolf Hugo <?php print(date("H:i:s"));?>
         </div>
     </body>
 </html>
