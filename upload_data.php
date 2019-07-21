@@ -31,8 +31,20 @@ if($debug){
 //$type = 0;
 //0 no data
 //1. sticky
+//  devname
+//  sticky
+//  time
 //2. msg
+//  devname
+//  msg
+//  to
+//  file_name
+//  file_loacte
+//  time
+//  ifread
 //3. file
+//  devname
+//  file
 
 if(isset($_POST["type"])){
     switch($_POST["type"]){
@@ -41,9 +53,11 @@ if(isset($_POST["type"])){
             break;
         }
         case "msg":{
+            msg_section();
             break;
         }
         case "file":{
+            file_section();
             break;
         }
     }
@@ -53,6 +67,8 @@ if(isset($_POST["type"])){
 
 
 function sticky_section(){
+    //set store medthod
+    $store_medthod="json";
     if(!isset($_POST["devname"])){
         die("stop with no sender's devname<br>");
     }
@@ -65,17 +81,25 @@ function sticky_section(){
     $data["sticky"]=$_POST["sticky"];
     $data["time"]=date("Y-m-d H:i:s");
 
-
-    if(file_exists("sticky.json")){
-        $sticky_data = json_decode(file_get_contents("sticky.json"));
-        $sticky_data[]=$data;
-        $sticky_data = array_values($sticky_data);
-        file_put_contents("sticky.json",json_encode($sticky_data));
-    }else{
-        $sticky_data[]=$data;
-        $sticky_data = array_values($sticky_data);
-        file_put_contents("sticky.json",json_encode($sticky_data));
+    switch($store_medthod){
+        case "json":{
+            if(file_exists("sticky.json")){
+                $sticky_data = json_decode(file_get_contents("sticky.json"));
+                $sticky_data[]=$data;
+                $sticky_data = array_values($sticky_data);
+                file_put_contents("sticky.json",json_encode($sticky_data));
+            }else{
+                $sticky_data[]=$data;
+                $sticky_data = array_values($sticky_data);
+                file_put_contents("sticky.json",json_encode($sticky_data));
+            }
+            break;
+        }
+        case "database":{
+            break;
+        }
     }
+   
 
     //without debug  the page will return inidex.php
     global $debug;
@@ -85,5 +109,10 @@ function sticky_section(){
     }
     
 }
+function msg_section(){
 
+}
+function file_section(){
+
+}
 
