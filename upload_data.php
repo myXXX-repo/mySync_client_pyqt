@@ -63,7 +63,7 @@ function sticky_section(){
     $data = array();
     $data["devname"]=$_POST["devname"];
     $data["sticky"]=$_POST["sticky"];
-    $data["date"]=date("Y-m-d H:i:s");
+    $data["time"]=date("Y-m-d H:i:s");
 
 
     if(file_exists("sticky.json")){
@@ -77,7 +77,7 @@ function sticky_section(){
         file_put_contents("sticky.json",json_encode($sticky_data));
     }
 
-    //TODO without debug  the page will return inidex.php
+    //without debug  the page will return inidex.php
     global $debug;
     //print($debug);
     if($debug==0){
@@ -85,4 +85,5 @@ function sticky_section(){
     }
     
 }
+
 

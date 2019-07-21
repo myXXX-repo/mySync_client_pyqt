@@ -41,12 +41,10 @@
         </div>
         <br>
         <div class="show_sticky">
-            <!--<table class="sticky_list" border="1px"></table>-->
             <ul class="sticky_list"></ul>
             <script>
-                var sticky_data = <?php echo file_get_contents("sticky.json");?>;
-                var stickt_list = document.getElementsByClassName("sticky_list")[0];
-                //var tag = 0;
+                var sticky_data=<?php echo file_get_contents("sticky.json");?>;
+                var stickt_list=document.getElementsByClassName("sticky_list")[0];
                 for(var i in sticky_data){
                     var a_del=document.createElement("a");
                     a_del.setAttribute("href","opt.php?option=del&id="+i);
@@ -56,13 +54,7 @@
                     li.appendChild(a_del);
                     li.appendChild(document.createTextNode(sticky_data[i]["devname"]+"| "+sticky_data[i]["sticky"]));
                     stickt_list.appendChild(li);
-                    //tag = i;
                 }
-                /*
-                var tag_p = document.createElement("p");
-                tag_p.appendChild(Document.createTextNode(tag));
-                var show_sticky = document.getElementsByClassName()[0];
-                show_sticky.appendChild(tag_p);*/
             </script>
         </div>
         <div class="footer">
