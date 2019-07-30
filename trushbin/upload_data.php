@@ -1,7 +1,7 @@
 <?php
 
-/*
-require "./Mdeoo.php";
+
+require "./Medoo.php";
 use Medoo\Medoo;
 
 //database config set
@@ -10,14 +10,20 @@ $database_info["servertype"]="";
 $database_info["serverhost"]="";
 $database_info["username"]="";
 $database_info["password"]="";
+$database_info["dbname"]="";
+
 
 function con_sql(){
+    global $database_info;
     return new Medoo([
-
+        'database_type' => $database_info["servertype"],
+        'database_name' => $database_info["dbname"],
+	    'server' => $database_info["serverhost"],
+	    'username' => $database_info["username"],
+	    'password' => $database_info["password"]
     ]);
-}*/
-//数据类型
-//sticky 便利贴 谁都能看 谁都能删除
+}
+
 $debug=0;
 if(file_exists("debug.ini")){
     $debug=1;
@@ -31,20 +37,11 @@ if($debug){
 //$type = 0;
 //0 no data
 //1. sticky
-//  devname
-//  sticky
-//  time
+//  devname sticky time
 //2. msg
-//  devname
-//  msg
-//  to
-//  file_name
-//  file_loacte
-//  time
-//  ifread
+//  devname msg to file_name(choisable) file_locate(choisable) time ifread
 //3. file
-//  devname
-//  file
+//  devname file_tag time
 
 if(isset($_POST["type"])){
     switch($_POST["type"]){
@@ -60,6 +57,10 @@ if(isset($_POST["type"])){
             file_section();
             break;
         }
+        case "test":{
+            test_section();
+            break;
+        }
     }
 }else{
     die("no data of type");
@@ -72,7 +73,7 @@ function sticky_section(){
     if(!isset($_POST["devname"])){
         die("stop with no sender's devname<br>");
     }
-    if(!isset($_POST["sticky"])){
+    if(!isset($_POST["sticky"])||$_POST["sticky"]==NULL){
         die("stop with no sticky date<br>");
     }
 
@@ -113,6 +114,46 @@ function msg_section(){
 
 }
 function file_section(){
+    //data store method
+    $store_medthod="json";
+    if(!isset($_POST["devname"])){
+        die("stop with no sender's devname<br>");
+    }
+    if(!isset($_POST["file_tag"])){
+        die("stop with no file_tag date<br>");
+    }
 
+    //rename && move file to upload file floder
+    $upload_dir = "./upload_file/";
+    $file_name = $_FILES["file"]["name"];
+    
+
+    if(move_uploaded_file(
+        $_FILES["file"]["tmp_name"],
+        $upload_dir.$_FILES["file"]["name"]
+        )){
+            print("uploaded");
+        }else{
+            die("can't upload file of".$_FILES["file"]["name"]);
+        }
+
+
+     //without debug  the page will return inidex.php
+     global $debug;
+     if($debug==1){
+         print("name: ".$_FILES["file"]["name"]."<br>");
+         print("type: ".$_FILES["file"]["type"]."<br>");
+         print("tmp_name: ".$_FILES["file"]["tmp_name"]."<br>");
+         print("error: ".$_FILES["file"]["error"]."<br>");
+         print("size: ".$_FILES["file"]["size"]."<br>");
+     }
+     //print($debug);
+     if($debug==0){
+         print("<script>window.location.href=\"index.php\"</script>");
+     }
+}
+function test_section(){
+    print("test section<br>");
+    print_r($_POST);
 }
 

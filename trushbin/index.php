@@ -64,7 +64,7 @@
         <!--msg section-->
         <h4>message background haven't done</h4>
         <div class="send_msg">
-        <form action="upload_data.php" method="post">
+            <form action="upload_data.php" method="post">
                 <input type="hidden" name="type" value="msg">
                 <table>
                     <tr>
@@ -107,18 +107,20 @@
         <br>
         <hr>
         <!--file section-->
-        <h4>file background haven't done</h4>
+        <h4>file</h4>
+        <h6>MAX_FILE_SIZE=32MB</h6>
         <div class="send_file">
-        <form action="upload_data.php" method="post" enctype="multipart/form-data">
+            <form action="upload_data.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="type" value="file">
+                <input type="hidden" name="MAX_FILE_SIZE" value="30000000">
                 <table>
                     <tr>
                         <td>devname</td>
-                        <td><input type="text" name="devname" autocomplete="off"></td>
+                        <td><input type="text" name="devname" autocomplete="off" value="111"></td>
                     </tr>
                     <tr>
                         <td>file_tag</td>
-                        <td><input type="text" name="file_tag" autocomplete="off"></td>
+                        <td><input type="text" name="file_tag" autocomplete="off" value="11244325"></td>
                     </tr>
                     <tr>
                         <td>file</td>
@@ -130,6 +132,7 @@
                     </tr>
                 </table>
             </form>
+            <a href="./upload_file">文件列表</a>
         </div>
 
 
@@ -141,3 +144,10 @@
         </div>
     </body>
 </html>
+<?php
+$dir = iconv("UTF-8", "UTF-8", "./upload_file");
+
+if(!file_exists($dir)){
+    mkdir($dir,0777,true);
+}
+?>
