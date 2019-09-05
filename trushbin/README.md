@@ -1,34 +1,37 @@
-# mySync
+# **mySync**
+One CrossPlantform data sync framework, witch face to background
+
 Run with php to sync data upown devices
 
-I do use the Medoo.php to support the project to store data with database.
+
 
 ----
-## function:
-to realize the sticky,message,file sync in the devices group
+## **Introduction:**
+This is a plugins-support data sync framework
 
-we need a post request to tell the type of the data type
-### sticky
-For now this function use json file to store the data, in the future I will support it with database, like mysql.
+There are two internal plugins, sticky and filesHost
 
-$_POST["type"] = "sticky";
+However the framework is in low built level, I will upgrade it latter 
 
-$_POST["devname"];
+### **user guide -- framework usage**
 
-$_POST["sticky"];
+***NULL***
+
+### **user guide -- plugin usage**
+
+Your client should send data with post method, pluginId and more will be used by the plugins, the framework need the pluginId to judge witch one shuld required.
+
+#### **sticky** 
+
+This plugin used to store some short text on the server space, and share accross the devices with web\app\script and more method.
+
+*sticky usage:*
+
+send post['pluginId'] ['option'] ['devname'] [sticky]
 
 and the program will add time to data save section
 
-and the "devname","sticky","time" to store file or database
+#### **fileHost**
 
-### message
+This plugin just sits on depending level
 
-haven't complated coded
-
-$_POST["type"] = "msg";
-
-### file
-
-haven't coded
-
-$_POST["type"] = "file";
