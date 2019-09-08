@@ -3,12 +3,31 @@
     <head>
         <meta charset="utf8">
         <meta name="viewport" content="width=deivce-width,initial-scale=1">
-        <link rel="stylesheet" href="./css/foundation.min.css">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
         <script>$(document).ready(function(){$(document).foundation();})</script>
     </head>
     <body>
         <form action="sticky.php" method="post">
-            
+            <input type="hidden" name="operate" value="add">
+            <fieldset>
+                    <legend>send sticky</legend>
+                    <label>
+                        sticky
+                        <textarea rows="4" placeholder="input sticky here" name="sticky" autocomplete="off"></textarea>
+                    </label>
+                    <label>
+                        <input type="submit" value="submit">
+                    </label>
+            </fieldset>
         </form>
+        <script>
+            var data=null;
+            $.post('sticky.php',{operate:'getdata'},function(data,status){
+                console.log(data);
+            });
+        </script>
     </body>
 </html>
