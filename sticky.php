@@ -1,21 +1,7 @@
 <?php
-//require_once "littleTools.php";
+
 require_once "./sqlInit.php";
 
-
-//require_once 'Medoo.php';
-use Medoo\Medoo;
-
-function getDatabase(){
-    return new Medoo([
-        'database_type' => 'mysql',
-        'database_name' => 'mysync',
-        'server' => '127.0.0.1',
-        'username' => 'root',
-        'password' => 'wolf',
-        'charset' => 'utf8'
-    ]);
-}
 
 $database=new DataBase('sticky');
 //print_r($data);
@@ -26,7 +12,9 @@ if(isset($_POST['operate'])){
             break;
         }
         case 'add':{
-            $database->insertDataItem('sticky',$_POST['sticky']);
+            if(isset($_POST['sticky'])&&$_POST['sticky']!=null){
+                $database->insertDataItem('sticky',$_POST['sticky']);
+            }
             header('Location: index.html');
             break;
         }
@@ -34,4 +22,4 @@ if(isset($_POST['operate'])){
     
 }
 
-//print_r($_SERVER);
+//($_SERVER);
