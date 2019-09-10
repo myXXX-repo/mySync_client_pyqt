@@ -37,15 +37,23 @@
         </div>
         
         <script>
-            //var data=Array();
-            // $.getJSON('sticky.php',{operate:'getalldata'},function(data){
-            //     console.log(data[0]);
-            // });
-            if(1){
-                $.post('sticky.php',{operate:'getalldata'},function(data){
-                    console.log(data);
-                });
-            }
+            var form = document.createElement("form");
+            form.setAttribute("action","sticky.php");
+            form.setAttribute("method","post");
+            var input_operate = document.createElement("input");
+            input_operate.setAttribute('name','operate');
+            input_operate.setAttribute('value','add');
+            form.appendChild(input_operate);
+            var input_sticky = document.createElement("input");
+            input_sticky.setAttribute('name','sticy');
+            input_sticky.setAttribute('value','add');
+            form.appendChild(input_operate);
+            var submit = document.createElement('input');
+            submit.setAttribute('type','submit');
+            submit.click();
+
+
+
             $.post('sticky.php',{operate:'getalldata'},function(data,status){
                 //console.log(data);
                 createStickyTable(eval(data));

@@ -39,14 +39,13 @@ class DataBase{
         $this->dataBase->insert($this->tableName,$array);
         return "ok";
     }
+    public function delItemById($id){
+        $this->dataBase->delete($this->tableName,["id"=>$id]);
+    }
 }
 
-/*
-$dataBase=new DataBase('sticky');
-$data=$dataBase->selectAllData();
-print_r($data);
-print($dataBase->insertDataItem('sticky','sticky'));
-print_r($dataBase->selectAllData());
-print_r($dataBase->insertDataItem(['sticky'],['ojbk']));
-print_r($dataBase->selectAllData());
-*/
+
+// $dataBase=new DataBase('sticky');
+// print_r($dataBase->selectAllData());
+// $dataBase->delItemById('1');
+// print_r($da(taBase->selectAllData());
