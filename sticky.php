@@ -19,9 +19,13 @@ if(isset($_REQUEST['operate'])){
             break;
         }
         case 'del':{
+            //print_r($_REQUEST);
+            //print_r($database->selectAllData());
             if(isset($_REQUEST['id'])&&$_REQUEST['id']!=null){
-                $database->delItemBbyId($_REQUEST['id']);
+                $database->delItemById($_REQUEST['id']);
             }
+            //print("<br>ergeghrte<br>");
+            //print_r($database->selectAllData());
             header('Location: index.html');
             break;
         }

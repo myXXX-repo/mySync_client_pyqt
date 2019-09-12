@@ -47,5 +47,5 @@ class DataBase{
 
 // $dataBase=new DataBase('sticky');
 // print_r($dataBase->selectAllData());
-// $dataBase->delItemById('1');
-// print_r($da(taBase->selectAllData());
+// $dataBase->delItemById('35');
+// print_r($dataBase->selectAllData());
