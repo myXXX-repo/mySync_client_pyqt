@@ -1,32 +1,31 @@
 <?php
-//require_once "littleTools.php";
+
 require_once "./sqlInit.php";
 
 
-//require_once 'Medoo.php';
-use Medoo\Medoo;
-
-function getDatabase(){
-    return new Medoo([
-        'database_type' => 'mysql',
-        'database_name' => 'mysync',
-        'server' => '127.0.0.1',
-        'username' => 'root',
-        'password' => 'wolf',
-        'charset' => 'utf8'
-    ]);
-}
-
 $database=new DataBase('sticky');
 //print_r($data);
-if(isset($_POST['operate'])){
-    switch($_POST['operate']){
+if(isset($_REQUEST['operate'])){
+    switch($_REQUEST['operate']){
         case 'getalldata':{
             echo json_encode($database->selectAllData());
             break;
         }
         case 'add':{
-            $database->insertDataItem('sticky',$_POST['sticky']);
+            if(isset($_REQUEST['sticky'])&&$_REQUEST['sticky']!=null){
+                $database->insertDataItem('sticky',$_REQUEST['sticky']);
+            }
+            header('Location: index.html');
+            break;
+        }
+        case 'del':{
+            //print_r($_REQUEST);
+            //print_r($database->selectAllData());
+            if(isset($_REQUEST['id'])&&$_REQUEST['id']!=null){
+                $database->delItemById($_REQUEST['id']);
+            }
+            //print("<br>ergeghrte<br>");
+            //print_r($database->selectAllData());
             header('Location: index.html');
             break;
         }
@@ -34,4 +33,4 @@ if(isset($_POST['operate'])){
     
 }
 
-//print_r($_SERVER);
+//($_SERVER);
