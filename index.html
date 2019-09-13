@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="lib/css/foundation.min.css">
         <script src="lib/js/jquery.min.js"></script>
         <script src="lib/js/foundation.min.js"></script>
+        <script src="lib/js/mysync.js"></script>
         <script>$(document).ready(function(){$(document).foundation();});</script>
         <style>
             .tabs-content > .content.active {
@@ -41,7 +42,7 @@
                     </div>
                     <div class="content active" id="sticky" aria-hidden="false">
                         <h3>STICKY</h3>
-                        <div class="panel radius" style="margin: 7px 7px;max-width: 900px;">
+                        <div class="panel radius" style="margin: 7px 7px;">
                                 <form action="sticky.php" method="post">
                                         <input type="hidden" name="operate" value="add">
                                         <fieldset>
@@ -69,36 +70,12 @@
                                 console.log(data);
                                 createStickyTable(eval(data));
                             });
-                            function createStickyTable(data){
-                                for(item in data){
-                                    console.log(data[item].id);
-                                    console.log(data[item].sticky);
-                                    console.log(data[item].time);
-                                    console.log(data[item].ip);
-                                    var tr=document.createElement("tr");
-                                    var td_id=document.createElement("td");
-                                    td_id.appendChild(document.createTextNode(data[item].id));
-                                    var td_sticky=document.createElement("td");
-                                    td_sticky.appendChild(document.createTextNode(data[item].sticky));
-                                    var td_time=document.createElement("td");
-                                    td_time.appendChild(document.createTextNode(data[item].time));
-                                    var td_ip=document.createElement("td");
-                                    td_ip.appendChild(document.createTextNode(data[item].ip));
-                                    var td_opt=document.createElement("td");
-                                    var a_opt=document.createElement("a");
-                                    var a_opt_href="sticky.php?operate=del&id="+data[item].id;
-                                    console.log(a_opt_href);
-                                    a_opt.setAttribute("href",a_opt_href);
-                                    a_opt.appendChild(document.createTextNode("del"));
-                                    td_opt.appendChild(a_opt);
-                                    tr.appendChild(td_id);
-                                    tr.appendChild(td_sticky);
-                                    tr.appendChild(td_time);
-                                    tr.appendChild(td_ip);
-                                    tr.appendChild(td_opt);
-                                    $("#stickyList").append(tr);
-                                }
-                            }
+                            //here is a function
+
+
+
+
+
                         </script>
                     </div>
                     <div class="content" id="docker" aria-hidden="true" tabindex="-1">
@@ -108,9 +85,9 @@
                     <div class="content" id="phpinfo" aria-hidden="true" tabindex="-1">
                         <script>
                             $.post('sticky.php',{operate:'phpinfo'},function(data,status){
-                                var phpinfodiv = document.getElementById("phpinfo");
+                                document.getElementById("phpinfo").innerHTML=data;
                                 console.log(data);
-                                phpinfodiv.innerHTML(data);
+                                //alert(data);
                             })
                         </script>
                     </div>
