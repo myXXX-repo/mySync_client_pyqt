@@ -1,6 +1,6 @@
 <?php
 
-require_once './sqlInit.php';
+require_once 'lib/php/sqlInit.php';
 
 //获取表名
 $tableName=$_REQUEST['tableName'];

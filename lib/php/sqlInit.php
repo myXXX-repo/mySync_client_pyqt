@@ -1,5 +1,5 @@
 <?php
-require_once 'Medoo.php';
+require_once 'lib/php/Medoo.php';
 use Medoo\Medoo;
 
 

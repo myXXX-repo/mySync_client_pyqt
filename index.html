@@ -5,9 +5,9 @@
         <title>mySync</title>
         <meta charset="utf8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
-        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+        <link rel="stylesheet" href="lib/css/foundation.min.css">
+        <script src="lib/js/jquery.min.js"></script>
+        <script src="lib/js/foundation.min.js"></script>
         <script>$(document).ready(function(){$(document).foundation();});</script>
         <style>
             .tabs-content > .content.active {
@@ -32,6 +32,7 @@
                 <li class="tab-title"><a href="#home" aria-selected="true" tabindex="-1">home</a></li>
                 <li class="tab-title active"><a href="#sticky" aria-selected="false" tabindex="0">sticky</a></li>
                 <li class="tab-title"><a href="#docker" aria-selected="false" tabindex="-1">docker</a></li>
+                <li class="tab-title"><a href="#phpinfo" aria-selected="false" tabindex="-1">phpinfo</a></li>
             </ul>
             <div class="tabs-content">
                     <div class="content" id="home" aria-hidden="true"tabindex="-1">
@@ -104,7 +105,16 @@
                         <h3>DOCKER</h3>
                         <p>svsv</p>
                     </div>
+                    <div class="content" id="phpinfo" aria-hidden="true" tabindex="-1">
+                        <script>
+                            $.post('sticky.php',{operate:'phpinfo'},function(data,status){
+                                var phpinfodiv = document.getElementById("phpinfo");
+                                console.log(data);
+                                phpinfodiv.innerHTML(data);
+                            })
+                        </script>
+                    </div>
                 </div>
-        
+
     </body>
 </html>
