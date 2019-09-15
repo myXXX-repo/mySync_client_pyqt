@@ -7,3 +7,11 @@ $tableName=$_REQUEST['tableName'];
 
 $database=new DataBase($tableName);
 
+$operates = $_REQUEST['operates'];
+
+echo(json_encode($_REQUEST));
+
+class RequestHolder{
+    private $tableName;
+    private $operates;
+}

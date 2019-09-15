@@ -4,7 +4,7 @@
     <head>
         <title>mySync</title>
         <meta charset="utf8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
         <link rel="stylesheet" href="lib/css/foundation.min.css">
         <script src="lib/js/jquery.min.js"></script>
         <script src="lib/js/foundation.min.js"></script>
@@ -26,72 +26,71 @@
                 to {opacity: 1;}
             }
         </style>
-        <!--<script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>-->
+        
     </head>
-    <body style="padding: 20px">
-            <ul class="tabs" data-tab="">
-                <li class="tab-title"><a href="#home" aria-selected="true" tabindex="-1">home</a></li>
-                <li class="tab-title active"><a href="#sticky" aria-selected="false" tabindex="0">sticky</a></li>
-                <li class="tab-title"><a href="#docker" aria-selected="false" tabindex="-1">docker</a></li>
-                <li class="tab-title"><a href="#phpinfo" aria-selected="false" tabindex="-1">phpinfo</a></li>
-            </ul>
+    <body>
+        <ul class="tabs" data-tab="">
+            <li class="tab-title"><a href="#home" aria-selected="true" tabindex="-1">home</a></li>
+            <li class="tab-title active"><a href="#sticky" aria-selected="false" tabindex="0">sticky</a></li>
+            <li class="tab-title"><a href="#docker" aria-selected="false" tabindex="-1">docker</a></li>
+            <li class="tab-title"><a href="#phpinfo" aria-selected="false" tabindex="-1">phpinfo</a></li>
+        </ul>
+
+        <div style="padding: 20px">
             <div class="tabs-content">
-                    <div class="content" id="home" aria-hidden="true"tabindex="-1">
-                        <h3>HOME</h3>
-                        <p>hrah</p>
-                    </div>
-                    <div class="content active" id="sticky" aria-hidden="false">
-                        <h3>STICKY</h3>
-                        <div class="panel radius" style="margin: 7px 7px;">
-                                <form action="sticky.php" method="post">
-                                        <input type="hidden" name="operate" value="add">
-                                        <fieldset>
-                                            <legend>send sticky</legend>
-                                            <textarea rows="4" placeholder="input sticky here" name="sticky" autocomplete="off"></textarea>
-                                            <br>
-                                            <input type="submit" value="submit" class="button">
-                                        </fieldset>
-                                    </form>
-                                    <fieldset>
-                                            <legend>sticky list</legend>
-                                            <table id="stickyList">
-                                                <tr>
-                                                    <td>ID</td>
-                                                    <td>STICKY</td>
-                                                    <td>DATE</td>
-                                                    <td>IP</td>
-                                                    <td>OPERATE</td>
-                                                </tr>
-                                            </table>
-                                    </fieldset>
+                <div class="content" id="home" aria-hidden="true"tabindex="-1">
+                    <h3>HOME</h3>
+                    <p>hrah</p>
+                </div>
+
+                <div class="content active" id="sticky" aria-hidden="false">
+                    <h3>STICKY</h3>
+                    <div class="panel radius" style="margin: 7px 7px;">
+                        <form action="sticky.php" method="post">
+                            <input type="hidden" name="operate" value="add">
+                            <fieldset>
+                                <legend>send sticky</legend>
+                                <textarea rows="4" placeholder="input sticky here" name="sticky" autocomplete="off"></textarea>
+                                <br>
+                                <input type="submit" value="submit" class="button">
+                            </fieldset>
+                        </form>
+                            <fieldset>
+                                <legend>sticky list</legend>
+                                <table id="stickyList">
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>STICKY</td>
+                                        <td>DATE</td>
+                                        <td>IP</td>
+                                        <td>OPERATE</td>
+                                    </tr>
+                                </table>
+                            </fieldset>
                         </div>
                         <script>
                             $.post('sticky.php',{operate:'getalldata'},function(data,status){
                                 console.log(data);
                                 createStickyTable(eval(data));
                             });
-                            //here is a function
-
-
-
-
-
                         </script>
-                    </div>
-                    <div class="content" id="docker" aria-hidden="true" tabindex="-1">
-                        <h3>DOCKER</h3>
-                        <p>svsv</p>
-                    </div>
-                    <div class="content" id="phpinfo" aria-hidden="true" tabindex="-1">
-                        <script>
-                            $.post('sticky.php',{operate:'phpinfo'},function(data,status){
-                                document.getElementById("phpinfo").innerHTML=data;
-                                console.log(data);
-                                //alert(data);
-                            })
-                        </script>
-                    </div>
                 </div>
 
+                <div class="content" id="docker" aria-hidden="true" tabindex="-1">
+                    <h3>DOCKER</h3>
+                    <p>svsv</p>
+                </div>
+
+                <div clas   s="content" id="phpinfo" aria-hidden="true" tabindex="-1">
+                    <script>
+                        // $.post('sticky.php',{operate:'phpinfo'},function(data,status){
+                        //     document.getElementById("phpinfo").innerHTML=data;
+                        //     console.log(data);
+                        //     //alert(data);
+                        // })
+                    </script>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
