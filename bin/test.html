@@ -1,48 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Foundation 实例</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
-  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
-</head>
-<body style="padding:20px">
-
-<h2>切换选项卡</h2>
-
-<ul class="tabs" data-tab="">
-  <li class="tab-title"><a href="#home" aria-selected="false" tabindex="-1">主页</a></li>
-  <li class="tab-title"><a href="#menu1" aria-selected="false" tabindex="-1">菜单 1</a></li>
-  <li class="tab-title active"><a href="#menu2" aria-selected="true" tabindex="0">菜单 2</a></li>
-  <li class="tab-title"><a href="#menu3" aria-selected="false" tabindex="-1">菜单 3</a></li>
-</ul>
-<div class="tabs-content">
-  <div class="content" id="home" aria-hidden="true" tabindex="-1">
-    <h3>主页</h3>
-    <p>主页内容..</p>
-  </div>
-  <div class="content" id="menu1" aria-hidden="true" tabindex="-1">
-    <h3>菜单 1</h3>
-    <p>一些文本内容 1</p>
-  </div>
-  <div class="content active" id="menu2" aria-hidden="false">
-    <h3>菜单 2</h3>
-    <p>一些文本内容 2</p>
-  </div>
-  <div class="content" id="menu3" aria-hidden="true" tabindex="-1">
-    <h3>菜单 3</h3>
-    <p>一些文本内容 3</p>
-  </div>
-</div>
-
-<!--初始化 Foundation JS -->
-<script>
-$(document).ready(function() {
-    $(document).foundation();
-})
-</script>
-
-</body>
+  <head>
+    <link rel="stylesheet" href="../lib/css/foundation.min.css">
+    <script src="../lib/js/jquery.min.js"></script>
+    <script src="../lib/js/foundation.min.js"></script>
+    <script src="../lib/js/mysync.js"></script>
+    <script>$(document).ready(function(){$(document).foundation();});</script>
+    <title>test</title>
+    <meta charset="utf8">
+  </head>
+  <body>
+    <script>
+      $.post('requestHolder.php',{tableName:"sticky",operates:"['a','b','c']"},function(data,status){
+        console.log(data);
+        document.getElementsByTagName('body')[0].innerHTML=data;
+        //createStickyTable(eval(data));
+      });
+    </script>
+  </body>
 </html>
