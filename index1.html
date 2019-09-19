@@ -6,27 +6,11 @@
         <meta charset="utf8">
         <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
         <link rel="stylesheet" href="lib/css/foundation.min.css">
+        <link rel="stylesheet" href="lib/css/mysync.css">
         <script src="lib/js/jquery.min.js"></script>
         <script src="lib/js/foundation.min.js"></script>
         <script src="lib/js/mysync.js"></script>
-        <script>$(document).ready(function(){$(document).foundation();});</script>
-        <style>
-            .tabs-content > .content.active {
-                -webkit-animation: fadeEffect 1s;
-                animation: fadeEffect 1s;
-            }
-
-            @-webkit-keyframes fadeEffect {
-                from {opacity: 0;}
-                to {opacity: 1;}
-            }
-
-            @keyframes fadeEffect {
-                from {opacity: 0;}
-                to {opacity: 1;}
-            }
-        </style>
-
+        <script></script>
     </head>
     <body>
         <ul class="tabs" data-tab="">
@@ -37,14 +21,16 @@
         </ul>
 
         <div style="padding: 20px">
+            <!--header block-->
             <div class="tabs-content">
+                <!--home block-->
                 <div class="content" id="home" aria-hidden="true"tabindex="-1">
                     <h3>HOME</h3>
                     <p>hrah</p>
                 </div>
                 <!--sticky block-->
                 <div class="content active" id="sticky" aria-hidden="false">
-                    <h3>STICKY</h3>
+                    <h3>STICKY</h3><br>
                     <div class="panel radius" style="margin: 7px 7px;">
                         <form action="sticky.php" method="post">
                             <input type="hidden" name="operate" value="add">
@@ -55,19 +41,19 @@
                                 <input type="submit" value="submit" class="button">
                             </fieldset>
                         </form>
-                            <fieldset>
-                                <legend>sticky list</legend>
-                                <table id="stickyList">
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>STICKY</td>
-                                        <td>DATE</td>
-                                        <td>IP</td>
-                                        <td>OPERATE</td>
+                        <fieldset>
+                            <legend>sticky list</legend>
+                            <table id="stickyList">
+                                <tr>
+                                    <td>ID</td>
+                                    <td>STICKY</td>
+                                    <td>DATE</td>
+                                    <td>IP</td>
+                                    <td>OPERATE</td>
                                     </tr>
-                                </table>
-                            </fieldset>
-                        </div>
+                            </table>
+                        </fieldset>
+                    </div>
                         <script>
                             $.post('sticky.php',{operate:'getalldata'},function(data,status){
                                 console.log(data);
@@ -75,20 +61,15 @@
                             });
                         </script>
                 </div>
-
+                <!--docker block-->
                 <div class="content" id="docker" aria-hidden="true" tabindex="-1">
                     <h3>DOCKER</h3>
                     <p>svsv</p>
                 </div>
-
-                <div clas   s="content" id="phpinfo" aria-hidden="true" tabindex="-1">
-                    <script>
-                        // $.post('sticky.php',{operate:'phpinfo'},function(data,status){
-                        //     document.getElementById("phpinfo").innerHTML=data;
-                        //     console.log(data);
-                        //     //alert(data);
-                        // })
-                    </script>
+                <!--phpinfo block-->
+                <div class="content" id="phpinfo" aria-hidden="true" tabindex="-1">
+                    <h3>PHPINFO</h3><br>
+                    <iframe src="sticky.php?operate=phpinfo" style="width: 100%; height: 1000px;"></iframe>
                 </div>
             </div>
         </div>
