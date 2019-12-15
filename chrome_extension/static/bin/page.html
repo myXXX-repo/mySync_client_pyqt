@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>title</title>
+    <meta charset="utf">
+    <script src="js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <script>
+        var sendPost = function () {
+            $.post("php/requestHolder.php", { "title": "get title from chrome", "url": "url-str" }, function (data, status) {
+                console.log(data, status)
+            });
+        }
+        sendPost()
+    </script>
+</body>
+
+</html>

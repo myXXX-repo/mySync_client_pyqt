@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf8' />
+    <style>
+        ::-webkit-scrollbar{
+            display: none;
+        }
+        * {
+            user-select: none;
+        }
+        
+        body {
+            margin: 0px;
+            padding: 0px;
+            padding-top: 3px;
+            margin-left: 5px;
+        }
+        
+        td {
+            padding-left: 0px;
+        }
+        
+        .button {
+            background-color: rgb(240, 240, 240);
+            text-align: left;
+            padding: 5px;
+            padding-left: 7px;
+            margin-bottom: 7px;
+            width: 130px;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        
+        .button:hover {
+            background-color: rgb(220, 220, 220);
+        }
+
+        .button:active{
+            background-color: rgb(200,200,200);
+        }
+        
+        /*.blank {*/
+            /*height: 3px;*/
+            /*widows: 130px;*/
+        /*}*/
+        
+        #list {
+            height: 210px;
+            width: 270px;
+            padding-left: 7px;
+            padding-right: 14px;
+            /*padding-top: 0px;*/
+            /*padding-bottom: 0px;*/
+            margin: 0px;
+            overflow-y: scroll;
+            overflow-x: visible;
+        }
+        .card{
+            padding: 7px;
+            background-color: rgb(210, 210, 210);
+            margin-bottom: 8px;
+            border-radius: 3px;
+            /*margin: 0 auto;*/
+        }
+    </style>
+</head>
+
+<body>
+    <table class="table_body">
+        <td>
+            <div id="panl" class="block">
+                <div class="button" id="btn1">sendCurrentTab</div>
+                <div class="button" id="btn2">sendAllTabs</div>
+                <div class="button" id="btn3">getAllTabs</div>
+                <div class="button" id="btn4">getLastTab</div>
+                <div class="button" id="btn6">clear</div>
+                <div class="button" id="btn5">settings...</div>
+            </div>
+        </td>
+        <td style="padding: 0px;">
+            <div id="list" class="block">
+                <div id="nothing">
+                    <div>GitHub: <br><a href="https://github.com/alone-wolf/tabSync_chrome_extension" target="_blank">https://github.com/alone-wolf/tabSync_chrome_extension</a>
+                    </div>
+                    <div class="blank"></div>
+                    <div>MyOwn Github: <br><a href="https://github.com/alone-wolf" target="_blank">https://github.com/alone-wolf</a></div>
+                </div>
+                <div id="current_tab_list">current_tab_list</div>
+                <div id="sendAllTabs_status">sendAllTabs_status</div>
+                <div id="getAll_tabs_list">getAll_tabs_list</div>
+                <div id="getLast_tab_list">getLast_tab_list</div>
+                <div id="clear_all_tabs">clear_all_tabs</div>
+                <div id="settings">
+                    <table id="setting_block">
+                        <tr>
+                            <td>server:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" autocomplete="off" id="servaddress">
+                            </td>
+                            <td>
+                                <button id="submit_servaddress">submit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>key:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" autocomplete="off" id="key">
+                            </td>
+                            <td>
+                                <button id="submit_key">submit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>devname:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" autocomplete="off" id="devname">
+                            </td>
+                            <td>
+                                <button id="submit_devname">submit</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </table>
+
+</body>
+<script src="static/js/jquery-3.4.1.min.js"></script>
+<script src="./static/qrcodejs/qrcode.min.js"></script>
+<script src="./popup.js"></script>
+<script src="./options.js"></script>
+</html>

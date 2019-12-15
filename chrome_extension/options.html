@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>setting for tabs sync</title>
+    <meta charset="utf8">
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./options.js"></script>
+    <style>
+        body {
+            width: 600px;
+            height: 450px;
+        }
+
+        #servaddress,
+        #key {
+            width: 450px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>服务器:</td>
+            <td>
+                <input type="text" autocomplete="off" id="servaddress">
+            </td>
+            <td>
+                <button id="submit_servaddress">submit</button>
+            </td>
+        </tr>
+        <tr>
+            <td>key:</td>
+            <td>
+                <input type="text" autocomplete="off" id="key">
+            </td>
+            <td>
+                <button id="submit_key">submit</button>
+            </td>
+        </tr>
+        <tr>
+            <td>设备名:</td>
+            <td>
+                <input type="text" autocomplete="off" id="devname">
+            </td>
+            <td>
+                <button id="submit_devname">submit</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button id="close">close</button></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+
+</html>
