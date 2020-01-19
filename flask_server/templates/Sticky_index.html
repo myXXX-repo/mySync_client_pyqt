@@ -36,15 +36,15 @@
 
                 <div class="form-group">
                     <label>Title</label>
-                    <input type="text" class="form-control" placeholder="Input Title">
+                    <input type="text" class="form-control" placeholder="Input Title" v-model="title">
                 </div>
                 <div class="form-group">
                     <label>Con</label>
-                    <textarea type="text" class="form-control" placeholder="Input Con"></textarea>
+                    <textarea type="text" class="form-control" placeholder="Input Con" v-model="con"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Time</label>
-                    <input type="text" class="form-control" placeholder="Input Con">
+                    <input type="text" class="form-control" placeholder="Input Con" >
                 </div>
 
 
@@ -58,6 +58,11 @@
 <script>
     new Vue({
         el:"#panel_form",
+        data:{
+            title:"",
+            con:"",
+            time:new Date()
+        },
         methods:{
             submit(){
                 console.log("111");
