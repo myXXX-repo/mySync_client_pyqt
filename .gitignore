@@ -1,2 +1,4 @@
 .venv
 server/data/tabjson.json
+.vscode/settings.json
+server/data/sticky.json
