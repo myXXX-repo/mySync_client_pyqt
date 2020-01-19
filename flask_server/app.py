@@ -4,6 +4,8 @@ app = Flask(__name__)
 sticky_list = {0: {'title': 'sticky_title1', 'con': 'sticky_con1'}, 1: {
     'title': 'sticky_title2', 'con': 'sticky_con2'}}
 
+api_list={}
+
 
 @app.route("/", methods=['GET', 'HEAD'])
 def index():
@@ -34,6 +36,10 @@ def visite_statistics():
 
 @app.route('/v2/statistics/reset',methods=['GET,POST'])
 def reset_statistics():
+    return "1"
+
+@app.route('/v2/config/getapis',methods=['GET'])
+def getapis():
     return "1"
 
 
