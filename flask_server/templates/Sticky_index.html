@@ -1,77 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "template.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="http://wolfpc/recrepo/vue/vue-2.6.11-dev.js"></script>
-    <script src="http://wolfpc/recrepo/jquery/jquery-1.10.2-min.js"></script>
-    <link href="http://wolfpc/recrepo/bootstrap3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="http://wolfpc/recrepo/bootstrap3.3.7/js/bootstrap.min.js"></script>
-</head>
+{% block addition_css %}
+{% endblock %}
 
-<body>
+{% block addition_js %}
+<script src="http://wolfpc/recrepo/vue/vue-2.6.11-dev.js"></script>
+{% endblock %}
 
-    <nav class="navbar navbar-inverse">
-        <a class="navbar-brand" href="/">mySync<small>·Sticky</small></a>
-        <ul class="nav navbar-nav">
-            <li class="active">
-                <a href="#">Home</a>
-            </li>
-            <li>
-                <a href="#">Link</a>
-            </li>
-        </ul>
-    </nav>
+{% block body %}
 
-
-    <div class="panel panel-default" id="panel_form">
-        <div class="panel-body">
-
-
-            <form>
-                <legend>Form title</legend>
-
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" placeholder="Input Title" v-model="title">
-                </div>
-                <div class="form-group">
-                    <label>Con</label>
-                    <textarea type="text" class="form-control" placeholder="Input Con" v-model="con"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Time</label>
-                    <input type="text" class="form-control" placeholder="Input Con" >
-                </div>
-
-
-
-                <button class="btn btn-primary" @click="submit">Submit</button>
-            </form>
-
-
+<div class="panel panel-default" style="width:390px;display: inline-block;vertical-align: top;">
+        <div class="panel-heading">
+                  <h3 class="panel-title">Panel title</h3>
         </div>
-    </div>
-<script>
-    new Vue({
-        el:"#panel_form",
-        data:{
-            title:"",
-            con:"",
-            time:new Date()
-        },
-        methods:{
-            submit(){
-                console.log("111");
-            }
-        }
-    });
-</script>
+        <div class="panel-body">
+            <form action="" method="POST" role="form">
+                  <!-- <legend>Send new sticky</legend> -->
+            
+                  <div class="form-group">
+                        <label>title</label>
+                        <input type="text" class="form-control" id="" placeholder="Input Title">
+                  </div>
+                  <div class="form-group">
+                        <label>con</label>
+                        <textarea class="form-control" rows="3" placeholder="Input Con"></textarea>
+                  </div>
+                  <div class="form-group">
+                        <label>time</label>
+                        <input type="text" class="form-control" id="" placeholder="Input Time">
+                  </div>
+                  <div class="form-group">
+                        <label>devName</label>
+                        <input type="text" class="form-control" id="" placeholder="Input DevName">
+                  </div>
+                  <div class="form-group">
+                        <label>send IP</label>
+                        <input type="text" class="form-control" id="" placeholder="Input IP">
+                  </div>
+            
+                  <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+</div>
 
-
-</body>
-
-</html>
+<div class="panel panel-default" style="display: inline-block;vertical-align: top;">
+        <div class="panel-heading">
+                  <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+                  
+                  <table class="table table-bordered table-hover">
+                        <thead>
+                              <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Con</th>
+                                    <th>Time</th>
+                                    <th>devName</th>
+                                    <th>send IP</th>
+                                    <th>Operate</th>
+                              </tr>
+                        </thead>
+                        <tbody>
+                              <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                              </tr>
+                        </tbody>
+                  </table>
+                  
+        </div>
+</div>
+{% endblock %}
