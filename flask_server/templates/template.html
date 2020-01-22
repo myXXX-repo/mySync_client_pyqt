@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="http://wolfpc/recrepo/vue/vue-2.6.11-dev.js"></script>
+    <script src="http://wolfpc/recrepo/jquery/jquery-1.10.2-min.js"></script>
+    <link href="http://wolfpc/recrepo/bootstrap3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="http://wolfpc/recrepo/bootstrap3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding-left: 9px;
+            padding-right: 9px;
+        }
+    </style>
+
+
+
+    <title>
+        {% if title1 %}
+        {{ title1 }}
+        {% if title2 %}
+        -{{ title2 }}
+        {% endif %}
+        {% else %}
+        template
+        {% endif %}
+    </title>
+    {% block addition_css %}
+    {% endblock %}
+
+
+</head>
+
+<body>
+    <!-- nav -->
+    <div class="page-header">
+        <h1>
+            {% if title1 %}{{title1}}{% else %}template{% endif %}<small>{% if title2 %}{{title2}}{% else %}page{% endif %}</small>
+        </h1>
+    </div>
+
+    <!-- con body  -->
+    {% block body %}
+
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#">Sticky</a>
+        </li>
+        <li>
+            <a href="#">tabSync</a>
+        </li>
+        <li class="active">toDoList</li>
+    </ol>
+
+
+    <br>
+    <hr>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Panel heading</div>
+        <div class="panel-body">
+            <p>Text goes here...</p>
+        </div>
+
+        <!-- Table -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Heading 1</th>
+                </tr>
+                <tr>
+                    <th>Heading 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Content 1</td>
+                </tr>
+                <tr>
+                    <td>Content 2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+    {% endblock %}
+
+    <!-- foot -->
+    <hr>
+    <p class="navbar-text pull-left" style="display: inline-block;">
+        &copy; powerd by WolfHugo
+    </p>
+    <p class="navbar-text pull-right" style="display: inline-block;">
+        <a href="/v2/statistics" class="navbar-link">statistics</a>
+    </p>
+    {% block addition_js %}
+    {% endblock %}
+</body>
+
+</html>
