@@ -2,3 +2,4 @@
 server/data/tabjson.json
 .vscode/settings.json
 server/data/sticky.json
+flask_server/data.json
