@@ -145,7 +145,7 @@ def index():
 # app_sticky
 @app.route('/v2/sticky', methods=['GET'])
 def sticky_index():
-    return abort(404)
+    return render_template('index_sticky.html',title1="Sticky",title2="index")
 
 
 @app.route('/v2/sticky/get', methods=['GET', 'POST'])
