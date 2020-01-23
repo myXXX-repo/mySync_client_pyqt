@@ -56,13 +56,11 @@ $allowedOperate = array(
     'getAllTabs',
     'addTabs',
 
-    // 'addOneSticky',
-    // 'clearSticky',
-    // 'delOneSticky',
-    // 'getLastSticky',
-    // 'getAllSticky',
-    'v2',
+    'addOneSticky',
+    'delOneSticky',
+    'getAllStickies',
 
+    'v2',
     'test'
 );
 if (!in_array($operate, $allowedOperate)) {
@@ -130,12 +128,54 @@ switch ($operate) {
             break;
         }
     case "v2": {
-            $route = $routerCtrl->getRoutePath();
-            response_operate($route[1]);
-            response_operate_response($route);
-            break;
+            goto V2PART;
         }
     case "test": {
+            break;
+        }
+    case "addOneSticky": {
+            $fileCtrl = new FileConCtrl($jsonFilePath['stickyJson']);
+            $tmp_new_sticky=json_decode($_POST['data']);
+            if($tmp_new_sticky==""){
+                $log->console_loge("addOneSticky","new sticky is blank");
+                goto END;
+            }
+            $fileCtrl->addItemToEnd($tmp_new_sticky);
+            response_operate_response($operate);
+            break;
+        }
+    case "delOneSticky": {
+            $fileCtrl = new FileConCtrl($jsonFilePath['stickyJson']);
+            $fileCtrl->delItem($_POST['data']);
+            response_operate_response($operate);
+            break;
+        }
+    case "getAllStickies": {
+            $fileCtrl = new FileConCtrl($jsonFilePath['stickyJson']);
+            $fileCon = $fileCtrl->getAllArray();
+            response_operate_response($fileCon);
+            break;
+        }
+}
+
+V2PART:
+//for api version 2
+$appArray = array(
+    'sticky',
+    'tab',
+    'file'
+);
+
+$app = $routePath[1];
+
+switch ($app) {
+    case "sticky": {
+            break;
+        }
+    case "tab": {
+            break;
+        }
+    case "file": {
             break;
         }
 }
