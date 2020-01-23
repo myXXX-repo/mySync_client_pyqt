@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <script src="http://wolfpc/recrepo/vue/vue-2.6.11-dev.js"></script>
-    <script src="http://wolfpc/recrepo/jquery/jquery-1.10.2-min.js"></script>
-    <link href="http://wolfpc/recrepo/bootstrap3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="http://wolfpc/recrepo/bootstrap3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="http://112.5.37.138:51370/recrepo/bootstrap3.3.7/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css" />
+
     <style>
         body {
             padding-left: 9px;
@@ -17,17 +17,23 @@
         }
     </style>
 
+    {% block icon %}
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="bookmark" href="/static/favicon.ico" type="image/x-icon"/>
+    {% endblock %}
 
 
     <title>
+        {% block title %}
         {% if title1 %}
         {{ title1 }}
         {% if title2 %}
-        -{{ title2 }}
+        - {{ title2 }}
         {% endif %}
         {% else %}
         template
         {% endif %}
+        {% endblock %}
     </title>
     {% block addition_css %}
     {% endblock %}
@@ -36,6 +42,7 @@
 </head>
 
 <body>
+    {% block header %}
     <!-- nav -->
     <div class="page-header">
         <h1>
@@ -44,6 +51,7 @@
     </div>
 
     <!-- con body  -->
+    {% endblock %}
     {% block body %}
 
 
@@ -102,14 +110,20 @@
     </div>
     {% endblock %}
 
+    {% block foot %}
     <!-- foot -->
     <hr>
     <p class="navbar-text pull-left" style="display: inline-block;">
-        &copy; powerd by WolfHugo
+        &copy; powered by WolfHugo
     </p>
-    <p class="navbar-text pull-right" style="display: inline-block;">
+    {% endblock %}
+    <!-- <p class="navbar-text pull-right" style="display: inline-block;">
         <a href="/v2/statistics" class="navbar-link">statistics</a>
-    </p>
+    </p> -->
+
+    <script src="http://112.5.37.138:51370/recrepo/vue/vue-2.6.11-dev.js"></script>
+    <script src="http://112.5.37.138:51370/recrepo/jquery/jquery-1.10.2-min.js"></script>
+    <script src="http://112.5.37.138:51370/recrepo/bootstrap3.3.7/js/bootstrap.min.js"></script>
     {% block addition_js %}
     {% endblock %}
 </body>
