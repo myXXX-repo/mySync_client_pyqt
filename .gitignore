@@ -1,6 +1,6 @@
 .venv
 server/data/tabjson.json
-.vscode/settings.json
-server/data/sticky.json
+.vscode
+server/data/*.json
 flask_server/data.json
 data.sql
