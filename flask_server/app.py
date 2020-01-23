@@ -210,6 +210,7 @@ def config():
 
 @app.route('/test', methods=['GET'])
 def test():
+    # return render_template("temp copy.html",error_code="404",error_msg="NotFound")
     return abort(404)
 
 
