@@ -150,17 +150,35 @@ def sticky_index():
 
 @app.route('/v2/sticky/get', methods=['GET', 'POST'])
 def sticky_get():
-    return abort(404)
+    request_method = request.method
+    request_data = ""
+    if request_method == 'GET':
+        request_data = request.args.to_dict()
+    else:
+        request_data = request.form.to_dict()
+    return request_method+str(request_data)
 
 
 @app.route('/v2/sticky/add', methods=['GET', 'POST'])
 def sticky_add():
-    return abort(404)
+    request_method = request.method
+    request_data = ""
+    if request_method == 'GET':
+        request_data = request.args.to_dict()
+    else:
+        request_data = request.form.to_dict()
+    return request_method+str(request_data)
 
 
 @app.route('/v2/sticky/del', methods=['GET', 'POST'])
 def sticky_del():
-    return abort(404)
+    request_method = request.method
+    request_data = ""
+    if request_method == 'GET':
+        request_data = request.args.to_dict()
+    else:
+        request_data = request.form.to_dict()
+    return request_method+str(request_data)
 
 # app_tabSync
 @app.route('/v2/tabSync', methods=['GET'])
