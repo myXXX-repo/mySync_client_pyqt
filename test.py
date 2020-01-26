@@ -3,7 +3,7 @@ from os import path
 import sqlite3
 
 
-class FileCtrl:
+class FileCtrl: # ctrl file
     def __init__(self, filePath):
         self.filePath = filePath
 
@@ -31,7 +31,7 @@ class FileCtrl:
         return data_to_return
 
 
-class SqliteDBHelper:
+class SqliteDBHelper: # ctrl sqlitedb
     def __init__(self, dbpath):
         self.dbpath = dbpath
 
@@ -41,7 +41,7 @@ class SqliteDBHelper:
             c.execute(sql_table_create)
             dbconn.commit()
 
-    def delData_byid(self,tableName,id):
+    def delData_byid(self, tableName, id):
         with sqlite3.connect(self.dbpath) as dbconn:
             c = dbconn.cursor()
             c.execute()
@@ -57,7 +57,7 @@ class SqliteDBHelper:
         return result
 
 
-class JsonFileCtrl:
+class JsonFileCtrl: # ctrl json file
     def __init__(self, filePath):
         self.filePath = filePath
         self.filefd = FileCtrl(filePath)
@@ -69,23 +69,14 @@ class JsonFileCtrl:
         return self.filefd.read(AUTOCREATE)
 
 
-class JsonDataCtrl:
-    def __init__(self, jsonFilePath, AUTOCREATE=0):
+class JsonDataCtrl: # write json data to .json or .db
+    def __init__(self, jsonFilePath, jsonFileAUTOCREATE=0):
         self.jsonFilePath = jsonFilePath
         self.jsonFileCtrl = JsonFileCtrl(jsonFilePath)
-        self.jsonData = self.jsonFileCtrl.read_json_from_file(AUTOCREATE)
+        self.jsonData = self.jsonFileCtrl.read_json_from_file(jsonFileAUTOCREATE)
         print(self.jsonData)
 
 
 if __name__ == "__main__":
-
-    # a = ['a','b','v']
-    # jsonData = json.dumps(a,ensure_ascii=0)
-    # jsonDataCtrl = JsonDataCtrl('data.json')
-    sqliteDBHelper = SqliteDBHelper('./data.sql')
-    # sqliteDBHelper.exec('''
-    # CREATE TABLE "" net exist (id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR (1024));
-    # ''')
-    # sqliteDBHelper.exec('insert into "aaa" values(?,?);',(None,'12'))
-    sqliteDBHelper.exec('delete from "aaa" where id=? and name = 15;',("12",))
-    # print(sqliteDBHelper.exec('select * from "aaa";'))
+    j = JsonDataCtrl('./data.json',1)
+    pass
