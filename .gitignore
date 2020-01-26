@@ -4,3 +4,4 @@ server/data/tabjson.json
 server/data/*.json
 flask_server/data.json
 data.sql
+data.json
