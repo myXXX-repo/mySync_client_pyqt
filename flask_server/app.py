@@ -5,6 +5,7 @@ from flask import redirect
 from flask import request
 from flask import abort
 import json
+import time
 
 app = Flask(__name__)
 
@@ -138,72 +139,164 @@ def error_505(e):
 
 # re_define route
 
+class Statistics:
+    def __init__(self):
+        self.apis={}
+        self.createDataBody()
+    def rec(self,appname,apiname,method):
+        self.apis[appname][apiname][method][0]+=1
+        self.apis[appname][apiname][method][1]=str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime()))
+    def createDataBody(self):
+        bodySeed = [
+            ['Index',[
+                ['IndexPage',['GET']]
+            ]],
+            ['Sticky',[
+                ['StickyIndex',['GET']],
+                ['getSticky',['GET','POST']],
+                ['addSticky',['GET','POST']],
+                ['delSticky',['GET','POST']],
+            ]],
+            ['tabSync',[
+                ['tabSyncIndex',['GET']],
+                ['gettabSync',['GET','POST']],
+                ['addtabSync',['GET','POST']],
+                ['deltabSync',['GET','POST']],
+            ]],
+            ['toDoList',[
+                ['toDoListIndex',['GET']],
+                ['gettoDoList',['GET','POST']],
+                ['addtoDoList',['GET','POST']],
+                ['deltoDoList',['GET','POST']],
+            ]],
+            ['statistics',[
+                ['statistics',['GET']]
+            ]]
+        ]
+        for app in bodySeed:
+            self.apis[app[0]]={}
+            for api in app[1]:
+                self.apis[app[0]][api[0]]={}
+                for method in api[1]:
+                    self.apis[app[0]][api[0]][method]=[0,'null']
+statistics = Statistics()
+
+class JsonArray:
+    def __init__(self):
+        self.jsonArray = []
+    def get(self):
+        return self.jsonArray
+    def add(self,new):
+        self.jsonArray.append(new)
+    def clear(self):
+        self.jsonArray = []
+
+sticky = JsonArray()
+tabSync = JsonArray()
+toDoList = JsonArray()
+
+        
+
 @app.route('/')
 def index():
+    statistics.rec('Index','IndexPage',request.method)
     return render_template('index.html', title1="mySync", title2="index")
 
 # app_sticky
-@app.route('/v2/sticky', methods=['GET'])
+@app.route('/v2/Sticky', methods=['GET'])
 def sticky_index():
+    statistics.rec('Sticky','StickyIndex',request.method)
     return render_template('index_sticky.html',title1="Sticky",title2="index")
 
 
-@app.route('/v2/sticky/get', methods=['GET', 'POST'])
+@app.route('/v2/Sticky/get', methods=['GET', 'POST'])
 def sticky_get():
-    return abort(404)
+    statistics.rec('Sticky','getSticky',request.method)
+    return json.dumps(sticky.get())
 
 
-@app.route('/v2/sticky/add', methods=['GET', 'POST'])
+@app.route('/v2/Sticky/add', methods=['GET', 'POST'])
 def sticky_add():
-    return abort(404)
+    newdata = 'null'
+    statistics.rec('Sticky','addSticky',request.method)
+    if request.method == 'GET':
+        newdata = request.args.to_dict()
+    elif request.method == 'POST':
+        newdata = request.form.to_dict()
+    if newdata != 'null':
+        print('newdata != "null"')
+        if newdata != {}:
+            print('newdata != dict')
+            sticky.add(newdata)
+    return newdata
 
 
-@app.route('/v2/sticky/del', methods=['GET', 'POST'])
+@app.route('/v2/Sticky/del', methods=['GET', 'POST'])
 def sticky_del():
+    statistics.rec('Sticky','delSticky',request.method)
     return abort(404)
 
 # app_tabSync
 @app.route('/v2/tabSync', methods=['GET'])
 def tabSync_index():
+    statistics.rec('tabSync','tabSyncIndex',request.method)
     return abort(404)
 
 
 @app.route('/v2/tabSync/get', methods=['GET', 'POST'])
 def tabSync_get():
+    statistics.rec('tabSync','gettabSync',request.method)
     return abort(404)
 
 
 @app.route('/v2/tabSync/add', methods=['GET', 'POST'])
 def tabSync_add():
+    statistics.rec('tabSync','addtabSync',request.method)
     return abort(404)
 
 
 @app.route('/v2/tabSync/del', methods=['GET', 'POST'])
 def tabSync_del():
+    statistics.rec('tabSync','deltabSync',request.method)
     return abort(404)
 
 # app_toDoList
 @app.route('/v2/toDoList', methods=['GET'])
 def toDoList_index():
+    statistics.rec('toDoList','toDoListIndex',request.method)
     return abort(404)
 
 
 @app.route('/v2/toDoList/get', methods=['GET', 'POST'])
 def toDoList_get():
+    statistics.rec('toDoList','gettoDoList',request.method)
     return abort(404)
 
 
 @app.route('/v2/toDoList/add', methods=['GET', 'POST'])
 def toDoList_add():
+    statistics.rec('toDoList','addtoDoList',request.method)
     return abort(404)
 
 
 @app.route('/v2/toDoList/del', methods=['GET', 'POST'])
 def toDoList_del():
+    statistics.rec('toDoList','deltoDoList',request.method)
     return abort(404)
 
 
-@app.route('/condfig', methods=['GET'])
+@app.route('/statistics',methods=['GET'])
+def getStatistics_raw():
+    statistics.rec('statistics','statistics',request.method)
+    return json.dumps(statistics.apis)
+
+@app.route('/statistics/raw',methods=['GET'])
+def getStatistics():
+    statistics.rec('statistics','statistics',request.method)
+    return statistics.apis
+
+
+@app.route('/config', methods=['GET'])
 def config():
     return abort(404)
 
